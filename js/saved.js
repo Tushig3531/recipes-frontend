@@ -1,4 +1,4 @@
-const api_uri = 'http://localhost:8080';
+const api_uri = 'https://recipes-flask-backend.onrender.com';
 
 function closeModal() {
     $('#recipe-modal').modal('hide');

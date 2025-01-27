@@ -1,6 +1,6 @@
 async function checkAuth() {
     try {
-        const response = await fetch("http://localhost:8080/protected", {
+        const response = await fetch("https://recipes-flask-backend.onrender.com/protected", {
             method: 'GET',
             credentials: 'include' // Send cookies
         });
@@ -18,7 +18,7 @@ async function checkAuth() {
 
 async function logout() {
     try {
-        const response = await fetch("http://localhost:8080/logout", {
+        const response = await fetch("https://recipes-flask-backend.onrender.com/logout", {
             method: 'POST',
             credentials: 'include'
         });
