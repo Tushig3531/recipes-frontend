@@ -1,4 +1,4 @@
-const api_uri = 'https://recipes-flask-backend.onrender.com';
+
 
 function getCookie(name) {
   const cookie = document.cookie
@@ -30,7 +30,7 @@ if (registerForm) {
       return;
     }
     try {
-      const response = await fetch(`${api_uri}/register`, {
+      const response = await fetch(`https://recipes-flask-backend.onrender.com/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
@@ -67,7 +67,7 @@ if (loginForm) {
     login_error.classList.remove("has-text-danger");
 
     try {
-      const response = await fetch(`${api_uri}/login`, {
+      const response = await fetch(`https://recipes-flask-backend.onrender.com/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -100,7 +100,7 @@ if (logoutButton) {
 
 async function logout() {
   try {
-    const response = await fetch(`${api_uri}/logout`, {
+    const response = await fetch(`https://recipes-flask-backend.onrender.com/logout`, {
       method: 'POST',
       credentials: 'include'
     });
@@ -120,7 +120,7 @@ async function logout() {
 if (window.location.pathname.endsWith('protected.html')) {
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await fetch(`${api_uri}/protected`, {
+      const response = await fetch(`https://recipes-flask-backend.onrender.com/protected`, {
         method: 'GET',
         credentials: 'include' 
       });

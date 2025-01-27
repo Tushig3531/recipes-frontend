@@ -1,9 +1,4 @@
 
-const api_uri = 'https://recipes-flask-backend.onrender.com';
-
-
-
-
 async function addNewItem() {
   const selectedItem = document.querySelector('input[name="item_name"]:checked');
   const quantityType = document.querySelector('input[name="quantityType"]:checked')?.value;
@@ -31,7 +26,7 @@ async function addNewItem() {
   console.log("Sending data to /fridge/add:", itemData);
 
   try {
-    const response = await fetch(`${api_uri}/fridge/add`, {
+    const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(itemData),
@@ -61,7 +56,7 @@ async function addNewItem() {
   
 async function fetchFridgeItems() {
   try {
-    const response = await fetch(`${api_uri}/fridge`, {
+    const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge`, {
       method: 'GET',
       credentials: 'include' 
     });
@@ -190,7 +185,7 @@ function searchItemsFridge() {
     return;
   }
 
-  fetch(`${api_uri}/fridge/search_items_fridge?q=${encodeURIComponent(query)}`, {
+  fetch(`https://recipes-flask-backend.onrender.com/fridge/search_items_fridge?q=${encodeURIComponent(query)}`, {
     method: 'GET',
     credentials: 'include'
   })
@@ -354,7 +349,7 @@ window.saveEdit = async function(itemId) {
   }
 
   try {
-    const response = await fetch(`${api_uri}/fridge/edit/${itemId}`, {
+    const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/edit/${itemId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ quantity: newQuantity }),
@@ -378,7 +373,7 @@ window.saveEdit = async function(itemId) {
 window.deleteItem = async function(id) {
   if (confirm("Are you sure you want to delete this item?")) {
     try {
-      const response = await fetch(`${api_uri}/fridge/delete/${id}`, {
+      const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/delete/${id}`, {
         method: "POST",
         credentials: 'include'
       });
