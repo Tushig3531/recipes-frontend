@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipes - RecipesApp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/recipe.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="recipes.html">RecipesApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto"> 
+        <li class="nav-item">
+          <a class="nav-link" href="saved.html">Saved</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="fridge.html">Fridge</a>
+        </li>
+        <li class="nav-item">
+          <button id="logout-button" class="btn btn-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <!-- Title -->
+    <div class="text-center mb-4">
+      <h1 class="display-4">Discover Delicious Recipes</h1>
+      <p class="lead">
+        <i class="fas fa-carrot text-success"></i> Simply search for recipes by ingredient or name to discover delicious dishes, or create your virtual fridge by adding the items you have at home. Filter results by dietary preferences and save your favorites for personalized recommendations. Whether you’re meal planning or just need dinner inspiration, we’re here to make cooking easy and enjoyable. <strong>Bon appétit!</strong>
+      </p>
+    </div>
+    <div class="text-center mb-4">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="search-type" value="ingredients" checked> Search by Ingredients
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="search-type" value="name"> Search by Name
+        </label>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-8">
+        <div class="input-group">
+          <input type="text" class="form-control" id="search-input" placeholder="Enter ingredients or recipe name">
+          <div class="input-group-append">
+            <button class="btn btn-primary" id="search-button">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </div>
+        </div>
+        <div id="autocomplete-suggestions" class="border rounded mt-2" style="display: none;"></div>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    <div class="row" id="recipe-list">
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item disabled" id="prev-button">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#" id="current-page">Page 1</a>
+        </li>
+        <li class="page-item" id="next-button">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Recipe Modal -->
+  <div class="modal fade" id="recipe-modal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Recipe Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            
+            <div class="col-md-6">
+              <img id="modal-image" src="" alt="Recipe Image" class="img-fluid rounded mb-3">
+            </div>
+            
+            <div class="col-md-6">
+              <h5>Ingredients</h5>
+              <p id="modal-ingredients">Loading...</p>
+              <h5>Instructions</h5>
+              <p id="modal-instructions">Loading...</p>
+              <h5>YouTube Tutorial</h5>
+              <div id="modal-video" class="embed-responsive embed-responsive-16by9">
+                
+              </div>
+              <div class="mt-4">
+                <h5>Grocery Stores</h5>
+                <div class="row">
+                  <div class="col-6 col-md-4 col-lg-2 mb-3">
+                    <a href="https://www.walmart.com/" target="_blank" aria-label="Walmart">
+                      <img src="images/Walmart.png" width="60" alt="Walmart Logo" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-2 mb-3">
+                    <a href="https://www.hy-vee.com/" target="_blank" aria-label="Hy-Vee">
+                      <img src="images/Hy-vee.png" width="70" alt="Hy-Vee Logo" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-2 mb-3">
+                    <a href="https://www.target.com/" target="_blank" aria-label="Target">
+                      <img src="images/target.png" width="60" alt="Target Logo" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-2 mb-3">
+                    <a href="https://www.costco.com/" target="_blank" aria-label="Costco">
+                      <img src="images/Costco.png" width="70" alt="Costco Logo" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-2 mb-3">
+                    <a href="https://www.kroger.com/" target="_blank" aria-label="Kroger">
+                      <img src="images/Kroger.png" width="60" alt="Kroger Logo" class="img-fluid">
+                    </a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container my-4">
+          <h3>Your Fridge Items</h3>
+          <div id="fridge-info-box">
+            <ul id="fridge-items-list" class="list-group">
+          </ul>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="save-recipe">Save Recipe</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal-footer">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

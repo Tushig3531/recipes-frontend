@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridge Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/fridge_style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/fridge.js"></script>
+    <script type="module" src="js/auth.js"></script>
+  </head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="recipes.html">RecipesApp</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto"> 
+          <li class="nav-item">
+            <a class="nav-link" href="recipes.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="saved.html">Saved</a>
+          </li>
+          <li class="nav-item">
+            <button id="logout-button" class="btn btn-danger">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    
+    <section class="section">
+        <div class="container">
+          <h1 class="title text-center">Fridge Management</h1>
+          <div id="messageBox"></div>
+          <div class="fridge-container mb-3">
+            <h2 class="subtitle">Items in the Fridge</h2>
+            <ul id="fridgeItems" class="list-group"></ul>
+            <p id="emptyMessage" class="text-center text-muted">
+              Click on "Add Item" to get started!
+            </p>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+              <i class="fas fa-plus"></i> Add Item
+            </button>
+          </div>
+        </div>
+    </section>
+
+    <!-- Add Item Modal -->
+    <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <form id="addItemForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModalLabel">Add Item to Fridge</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="searchBar" class="form-group">
+                <label class="form-label text-info">Search Items</label>
+                <input type="text" id="searchInput" placeholder="Search items..." class="form-control" />
+              </div>
+              <div id="dynamicBox" class="collapsed-box">
+                <div id="searchResults" class="mb-3"></div>
+              </div>
+              <div class="form-group">
+                <label for="brand" class="form-label text-info">Brand (Optional)</label>
+                <input type="text" id="brand" name="brand" class="form-control custom-input" placeholder="Enter brand name">
+              </div>
+              <div class="form-group">
+                <label class="form-label text-info">Quantity Type</label>
+                <div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="quantityType" id="numberRadio" value="number" onchange="toggleInputsFridge('number')">
+                    <label class="form-check-label text-info" for="numberRadio">Number of Items</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="quantityType" id="sizeRadio" value="size" onchange="toggleInputsFridge('size')">
+                    <label class="form-check-label text-info" for="sizeRadio">Size</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="quantityType" id="weightRadio" value="weight" onchange="toggleInputsFridge('weight')">
+                    <label class="form-check-label text-info" for="weightRadio">Weight</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="quantityType" id="liquidRadio" value="liquid" onchange="toggleInputsFridge('liquid')">
+                    <label class="form-check-label text-info" for="liquidRadio">Liquid</label>
+                  </div>
+                </div>
+              </div>
+              <!-- numberInputs -->
+              <div class="form-group dynamic-inputs" id="numberInputs" style="display: none;">
+                <label for="number" class="form-label text-info">Number of Items</label>
+                <input type="number" id="number" class="form-control custom-input" placeholder="Enter quantity">
+              </div>
+              <!-- sizeInputs -->
+              <div class="form-group dynamic-inputs" id="sizeInputs" style="display: none;">
+                <label class="form-label text-info">Size</label>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="number" id="sizeInch" class="form-control custom-input mb-2" placeholder="Inches" oninput="convertSizeFridge()">
+                    <small id="inchOutput" class="form-text text-info"></small>
+                  </div>
+                  <div class="col">
+                    <input type="number" id="sizeCm" class="form-control custom-input mb-2" placeholder="Centimeters" oninput="convertSizeFridge()">
+                    <small id="cmOutput" class="form-text text-info"></small>
+                  </div>
+                </div>
+              </div>
+              <!-- weightInputs -->
+              <div class="form-group dynamic-inputs" id="weightInputs" style="display: none;">
+                <label class="form-label text-info">Weight</label>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="number" id="weightKg" class="form-control custom-input mb-2" placeholder="Kilograms" oninput="convertWeight()">
+                    <small id="kgOutput" class="form-text text-info"></small>
+                  </div>
+                  <div class="col">
+                    <input type="number" id="weightLb" class="form-control custom-input mb-2" placeholder="Pounds" oninput="convertWeight()">
+                    <small id="lbOutput" class="form-text text-info"></small>
+                  </div>
+                </div>
+              </div>
+              <!-- liquidInputs -->
+              <div class="form-group dynamic-inputs" id="liquidInputs" style="display: none;">
+                <label class="form-label text-info">Liquid Volume</label>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="number" id="liquidGallon" class="form-control custom-input mb-2" placeholder="Gallons" oninput="convertLiquid()">
+                    <small id="gallonOutput" class="form-text text-info"></small>
+                  </div>
+                  <div class="col">
+                    <input type="number" id="liquidLiter" class="form-control custom-input mb-2" placeholder="Liters" oninput="convertLiquid()">
+                    <small id="literOutput" class="form-text text-info"></small>
+                  </div>
+                </div>
+              </div>
+              <p id="addItemError" class="form-text text-danger"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success">Add Item</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

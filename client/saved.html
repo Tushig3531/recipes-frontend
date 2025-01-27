@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Saved Recipes - RecipesApp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="module" src="js/saved.js"></script>
+  <script type="module" src="js/auth.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="recipes.html">RecipesApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="recipes.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="fridge.html">Fridge</a>
+        </li>
+        <li class="nav-item">
+          <button id="logout-button" class="btn btn-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <h1 class="display-4 text-center mb-4">Your Saved Recipes</h1>
+    <div class="row" id="saved-recipes">
+      <!-- Saved Recipe Cards Will Appear Here -->
+    </div>
+    <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+  </div>
+
+  <div class="modal fade" id="recipe-modal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title">Recipe Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <img id="modal-image" src="" alt="Recipe Image" class="img-fluid rounded mb-3">
+            </div>
+            <div class="col-md-6">
+              <h5>Ingredients</h5>
+              <p id="modal-ingredients">Loading...</p>
+              <h5>Instructions</h5>
+              <p id="modal-instructions">Loading...</p>
+              <h5>YouTube Tutorial</h5>
+              <div id="modal-video" class="embed-responsive embed-responsive-16by9">
+                <!-- YouTube iframe will be inserted here -->
+              </div>
+              <div class="mt-4">
+                <h5>Grocery Stores</h5>
+                <div class="d-flex">
+                  <a href="https://www.walmart.com/" target="_blank" aria-label="Walmart" class="mr-3">
+                    <img src="images/Walmart.png" alt="Walmart Logo" width="50" height="auto">
+                  </a>
+                  <a href="https://www.hy-vee.com/" target="_blank" aria-label="Hy-Vee" class="mr-3">
+                    <img src="images/Hy-vee.png" alt="Hy-Vee Logo" width="60" height="auto">
+                  </a>
+                  <a href="https://www.target.com/" target="_blank" aria-label="Target" class="mr-3">
+                    <img src="images/target.png" alt="Target Logo" width="50" height="auto">
+                  </a>
+                  <a href="https://www.costco.com/" target="_blank" aria-label="Costco" class="mr-3">
+                    <img src="images/Costco.png" alt="Costco Logo" width="60" height="auto">
+                  </a>
+                  <a href="https://www.kroger.com/" target="_blank" aria-label="Kroger">
+                    <img src="images/Kroger.png" alt="Kroger Logo" width="50" height="auto">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container my-4">
+          <h3>Your Fridge Items</h3>
+          <div id="fridge-info-box">
+            <ul id="fridge-items-list" class="list-group">
+              <!-- Fridge items will be loaded here -->
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="save-recipe">Save Recipe</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal-footer">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
