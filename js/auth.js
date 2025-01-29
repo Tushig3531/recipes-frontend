@@ -1,6 +1,6 @@
 async function checkAuth() {
     try {
-        const response = await fetch("https://recipes-flask-backend-521138187713.us-central1.run.app//protected", {
+        const response = await fetch("https://recipes-flask-backend-521138187713.us-central1.run.app/protected", {
             method: 'GET',
             credentials: 'include' // Send cookies
         });
@@ -18,7 +18,7 @@ async function checkAuth() {
 
 async function logout() {
     try {
-        const response = await fetch("https://recipes-flask-backend-521138187713.us-central1.run.app//logout", {
+        const response = await fetch("https://recipes-flask-backend-521138187713.us-central1.run.app/logout", {
             method: 'POST',
             credentials: 'include'
         });
