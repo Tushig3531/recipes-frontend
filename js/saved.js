@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadSavedRecipes() {
     try {
-        const response = await fetch(`https://recipes-flask-backend.onrender.com/saved_recipes`, {
+        const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/saved_recipes`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -39,7 +39,7 @@ async function loadSavedRecipes() {
 }
 
 async function fetchYouTubeTutorial(queryStr) {
-    const YOUTUBE_API_KEY = "AIzaSyAey7Rniu4UAz1p4P3vCw-o23BOedA_LAs";
+    const YOUTUBE_API_KEY = "AIzaSyAmHHz3lgsGTPO7AyxQ-BMCf5g174J5r8w";
     if (!YOUTUBE_API_KEY) return "";
 
     const query = encodeURIComponent(`${queryStr} tutorial`);
@@ -118,7 +118,7 @@ function displaySavedRecipes(recipes) {
 async function confirmAndRemoveRecipe(recipeId) {
 
     try {
-        const response = await fetch(`https://recipes-flask-backend.onrender.com/unsave_recipe/${recipeId}`, {
+        const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/unsave_recipe/${recipeId}`, {
             method: 'DELETE',
             credentials: 'include'
         });
@@ -138,7 +138,7 @@ async function confirmAndRemoveRecipe(recipeId) {
 
 async function openRecipeModal(recipeName) {
     try {
-        const detailUrl = `https://recipes-flask-backend.onrender.com/recipe_details_csv?name=${encodeURIComponent(recipeName)}`;
+        const detailUrl = `https://recipes-flask-backend-521138187713.us-central1.run.app/recipe_details_csv?name=${encodeURIComponent(recipeName)}`;
 
         const res = await fetch(detailUrl, { method: 'GET', credentials: 'include' });
         if (!res.ok) {
@@ -172,7 +172,7 @@ async function openRecipeModal(recipeName) {
 
 async function checkIfRecipeSaved(recipeId) {
     try {
-        const response = await fetch(`https://recipes-flask-backend.onrender.com/is_recipe_saved/${recipeId}`, {
+        const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/is_recipe_saved/${recipeId}`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -234,7 +234,7 @@ async function removeRecipeFromModal() {
     }
 
     try {
-        const response = await fetch(`https://recipes-flask-backend.onrender.com/unsave_recipe/${recipeId}`, {
+        const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/unsave_recipe/${recipeId}`, {
             method: 'DELETE',
             credentials: 'include'
         });
@@ -278,7 +278,7 @@ async function saveRecipe() {
     };
 
     try {
-        const saveRes = await fetch(`https://recipes-flask-backend.onrender.com/save_recipe`, {
+        const saveRes = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/save_recipe`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
@@ -309,7 +309,7 @@ function escapeHtml(text) {
 
 async function loadFridgeItems(elementId) {
     try {
-        const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge`, {
+        const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -352,7 +352,7 @@ async function deleteItem(itemId) {
     
 
     try {
-        const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/${itemId}`, {
+        const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge/${itemId}`, {
             method: 'DELETE',
             credentials: 'include'
         });

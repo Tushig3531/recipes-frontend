@@ -26,7 +26,7 @@ async function addNewItem() {
   console.log("Sending data to /fridge/add:", itemData);
 
   try {
-    const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/add`, {
+    const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(itemData),
@@ -56,7 +56,7 @@ async function addNewItem() {
   
 async function fetchFridgeItems() {
   try {
-    const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge`, {
+    const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge`, {
       method: 'GET',
       credentials: 'include' 
     });
@@ -185,7 +185,7 @@ function searchItemsFridge() {
     return;
   }
 
-  fetch(`https://recipes-flask-backend.onrender.com/fridge/search_items_fridge?q=${encodeURIComponent(query)}`, {
+  fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge/search_items_fridge?q=${encodeURIComponent(query)}`, {
     method: 'GET',
     credentials: 'include'
   })
@@ -349,7 +349,7 @@ window.saveEdit = async function(itemId) {
   }
 
   try {
-    const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/edit/${itemId}`, {
+    const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge/edit/${itemId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ quantity: newQuantity }),
@@ -373,7 +373,7 @@ window.saveEdit = async function(itemId) {
 window.deleteItem = async function(id) {
   if (confirm("Are you sure you want to delete this item?")) {
     try {
-      const response = await fetch(`https://recipes-flask-backend.onrender.com/fridge/delete/${id}`, {
+      const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/fridge/delete/${id}`, {
         method: "POST",
         credentials: 'include'
       });

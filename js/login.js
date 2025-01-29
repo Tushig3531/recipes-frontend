@@ -30,7 +30,7 @@ if (registerForm) {
       return;
     }
     try {
-      const response = await fetch(`https://recipes-flask-backend.onrender.com/register`, {
+      const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
@@ -67,7 +67,7 @@ if (loginForm) {
     login_error.classList.remove("has-text-danger");
 
     try {
-      const response = await fetch(`https://recipes-flask-backend.onrender.com/login`, {
+      const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -100,7 +100,7 @@ if (logoutButton) {
 
 async function logout() {
   try {
-    const response = await fetch(`https://recipes-flask-backend.onrender.com/logout`, {
+    const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/logout`, {
       method: 'POST',
       credentials: 'include'
     });
@@ -120,7 +120,7 @@ async function logout() {
 if (window.location.pathname.endsWith('protected.html')) {
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await fetch(`https://recipes-flask-backend.onrender.com/protected`, {
+      const response = await fetch(`https://recipes-flask-backend-521138187713.us-central1.run.app/protected`, {
         method: 'GET',
         credentials: 'include' 
       });
